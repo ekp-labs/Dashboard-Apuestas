@@ -319,6 +319,226 @@ export const timelineStages = [
   { id: '12', label: 'DIC', month: 'DIC', stageName: 'Diciembre', active: false }
 ];
 
+export const LEAGUE_MATCHES = [
+  {
+    id: 'epl',
+    name: 'Premier League',
+    flag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿',
+    region: 'Inglaterra',
+    matchCount: 3,
+    isTopLeague: true,
+    matches: [
+      {
+        id: 'epl1',
+        homeTeam: 'Liverpool',
+        awayTeam: 'Arsenal',
+        homeFlag: '🔴',
+        awayFlag: '🔴',
+        scoreHome: 1,
+        scoreAway: 0,
+        minute: 64,
+        time: "64' EN VIVO",
+        status: 'LIVE',
+        xGHome: 1.84,
+        xGAway: 0.92,
+        odds1: 2.10,
+        oddsX: 3.40,
+        odds2: 3.20,
+        aiWinProbHome: 52,
+        valueBetEV: 8.7,
+        isTopPick: true,
+        stadium: 'Anfield, Liverpool'
+      },
+      {
+        id: 'epl2',
+        homeTeam: 'Manchester City',
+        awayTeam: 'Chelsea',
+        homeFlag: '🩵',
+        awayFlag: '🔵',
+        time: 'Hoy 18:30',
+        status: 'UPCOMING',
+        xGHome: 2.25,
+        xGAway: 1.05,
+        odds1: 1.62,
+        oddsX: 4.20,
+        odds2: 5.10,
+        aiWinProbHome: 64,
+        stadium: 'Etihad Stadium, Manchester'
+      },
+      {
+        id: 'epl3',
+        homeTeam: 'Tottenham',
+        awayTeam: 'Aston Villa',
+        homeFlag: '⚪',
+        awayFlag: '🟣',
+        time: 'Hoy 20:45',
+        status: 'UPCOMING',
+        xGHome: 1.65,
+        xGAway: 1.50,
+        odds1: 2.20,
+        oddsX: 3.50,
+        odds2: 3.10,
+        aiWinProbHome: 44,
+        valueBetEV: 5.2,
+        stadium: 'Tottenham Hotspur Stadium, London'
+      }
+    ]
+  },
+  {
+    id: 'laliga',
+    name: 'LaLiga EA Sports',
+    flag: '🇪🇸',
+    region: 'España',
+    matchCount: 2,
+    isTopLeague: true,
+    matches: [
+      {
+        id: 'es1',
+        homeTeam: 'Real Madrid',
+        awayTeam: 'FC Barcelona',
+        homeFlag: '⚪',
+        awayFlag: '🔵🔴',
+        time: 'Hoy 21:00',
+        status: 'UPCOMING',
+        xGHome: 2.05,
+        xGAway: 1.88,
+        odds1: 2.00,
+        oddsX: 3.60,
+        odds2: 3.40,
+        aiWinProbHome: 48,
+        valueBetEV: 6.8,
+        isTopPick: true,
+        stadium: 'Santiago Bernabéu, Madrid'
+      },
+      {
+        id: 'es2',
+        homeTeam: 'Atlético de Madrid',
+        awayTeam: 'Athletic Club',
+        homeFlag: '🔴⚪',
+        awayFlag: '🔴⚪',
+        scoreHome: 2,
+        scoreAway: 1,
+        time: 'Finalizado',
+        status: 'FINISHED',
+        xGHome: 1.72,
+        xGAway: 1.10,
+        odds1: 1.95,
+        oddsX: 3.30,
+        odds2: 4.10,
+        aiWinProbHome: 51,
+        stadium: 'Cívitas Metropolitano, Madrid'
+      }
+    ]
+  },
+  {
+    id: 'wc2026',
+    name: 'FIFA World Cup 2026',
+    flag: '🏆',
+    region: 'Mundial',
+    matchCount: 2,
+    isTopLeague: true,
+    matches: [
+      {
+        id: 'wc1',
+        homeTeam: 'Francia',
+        awayTeam: 'Brasil',
+        homeFlag: '🇫🇷',
+        awayFlag: '🇧🇷',
+        scoreHome: 2,
+        scoreAway: 1,
+        minute: 78,
+        time: "78' EN VIVO",
+        status: 'LIVE',
+        xGHome: 2.14,
+        xGAway: 1.08,
+        odds1: 1.92,
+        oddsX: 3.40,
+        odds2: 3.85,
+        aiWinProbHome: 55,
+        valueBetEV: 12.4,
+        isTopPick: true,
+        stadium: 'MetLife Stadium, New York'
+      },
+      {
+        id: 'wc2',
+        homeTeam: 'Argentina',
+        awayTeam: 'España',
+        homeFlag: '🇦🇷',
+        awayFlag: '🇪🇸',
+        scoreHome: 1,
+        scoreAway: 1,
+        minute: 32,
+        time: "32' EN VIVO",
+        status: 'LIVE',
+        xGHome: 1.45,
+        xGAway: 1.62,
+        odds1: 2.45,
+        oddsX: 3.10,
+        odds2: 2.70,
+        aiWinProbHome: 40,
+        valueBetEV: 8.7,
+        stadium: 'AT&T Stadium, Dallas'
+      }
+    ]
+  },
+  {
+    id: 'ucl',
+    name: 'UEFA Champions League',
+    flag: '🇪🇺',
+    region: 'Europa',
+    matchCount: 1,
+    isTopLeague: true,
+    matches: [
+      {
+        id: 'ucl1',
+        homeTeam: 'Bayern München',
+        awayTeam: 'Inter Milan',
+        homeFlag: '🔴',
+        awayFlag: '🖤💙',
+        scoreHome: 1,
+        scoreAway: 1,
+        minute: 38,
+        time: "38' EN VIVO",
+        status: 'LIVE',
+        xGHome: 1.45,
+        xGAway: 1.28,
+        odds1: 1.85,
+        oddsX: 3.60,
+        odds2: 4.00,
+        aiWinProbHome: 53,
+        valueBetEV: 11.2,
+        stadium: 'Allianz Arena, Munich'
+      }
+    ]
+  },
+  {
+    id: 'seriea',
+    name: 'Serie A Made in Italy',
+    flag: '🇮🇹',
+    region: 'Italia',
+    matchCount: 1,
+    isTopLeague: false,
+    matches: [
+      {
+        id: 'ita1',
+        homeTeam: 'Juventus',
+        awayTeam: 'AC Milan',
+        homeFlag: '⚪🖤',
+        awayFlag: '🔴🖤',
+        time: 'Mañana 18:00',
+        status: 'UPCOMING',
+        xGHome: 1.55,
+        xGAway: 1.40,
+        odds1: 2.30,
+        oddsX: 3.20,
+        odds2: 3.25,
+        aiWinProbHome: 42,
+        stadium: 'Allianz Stadium, Turin'
+      }
+    ]
+  }
+];
+
 export const focusLeagues = [
   { id: '1', name: 'Champions League', flag: '🇪🇺', matchCount: 8, topFavorite: 'Real Madrid' },
   { id: '2', name: 'Premier League', flag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿', matchCount: 10, topFavorite: 'Manchester City' },

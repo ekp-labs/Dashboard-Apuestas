@@ -1,226 +1,223 @@
 import React, { useState } from 'react';
 import {
-  Trophy,
-  CalendarDays,
-  UserCheck,
-  Repeat,
-  Brain,
-  Shield,
-  ArrowRight,
+  ChevronDown,
+  ChevronUp,
   Sparkles,
-  Globe2,
-  X
-} from 'lucide-react';
-import { focusedLeagues, hubNodes } from '../data/mockData';
-import { HubNode, FocusedLeague } from '../types';
-
-const nodeIcons: Record<string, React.ElementType> = {
   Trophy,
-  CalendarDays,
-  UserCheck,
-  Repeat,
-  Brain,
-  Shield
-};
+  Activity,
+  ArrowRight,
+  TrendingUp,
+  Shield,
+  Zap
+} from 'lucide-react';
+import { LEAGUE_MATCHES } from '../data/mockData';
 
 interface CentralHubProps {
-  onNodeClick: (node: HubNode) => void;
-  onLeagueClick: (league: FocusedLeague) => void;
+  onSelectMatch: (match: any) => void;
+  onLeagueClick: (league: any) => void;
+  selectedFilter: string;
 }
 
-export const CentralHub: React.FC<CentralHubProps> = ({ onNodeClick, onLeagueClick }) => {
-  const [hoveredNode, setHoveredNode] = useState<HubNode | null>(null);
+export const CentralHub: React.FC<CentralHubProps> = ({
+  onSelectMatch,
+  onLeagueClick,
+  selectedFilter
+}) => {
+  // Keep track of collapsed league sections
+  const [collapsedLeagues, setCollapsedLeagues] = useState<Record<string, boolean>>({});
+
+  const toggleLeague = (leagueId: string) => {
+    setCollapsedLeagues((prev) => ({
+      ...prev,
+      [leagueId]: !prev[leagueId]
+    }));
+  };
+
+  // Filter matches inside each league based on selectedFilter
+  const filteredLeagues = LEAGUE_MATCHES.map((league) => {
+    let matches = league.matches;
+
+    if (selectedFilter === 'live') {
+      matches = matches.filter((m) => m.status === 'LIVE');
+    } else if (selectedFilter === 'value') {
+      matches = matches.filter((m) => m.valueBetEV && m.valueBetEV > 0);
+    } else if (selectedFilter === 'top') {
+      matches = league.isTopLeague ? matches : [];
+    }
+
+    return {
+      ...league,
+      matches
+    };
+  }).filter((league) => league.matches.length > 0);
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-12 gap-4">
-      
-      {/* Left Box: COMPETICIONES EN FOCO (4 cols) */}
-      <div className="lg:col-span-4 glass-panel rounded-2xl p-4 border border-[#2B4C7E] flex flex-col justify-between shadow-[0_0_20px_rgba(0,0,0,0.4)]">
-        <div>
-          <div className="flex items-center justify-between pb-3 border-b border-[#24426C] mb-3">
-            <h2 className="font-heading font-black text-lg text-white uppercase tracking-wider flex items-center gap-2">
-              <Trophy className="w-4 h-4 text-[#00E5A0]" />
-              COMPETICIONES EN FOCO
-            </h2>
-            <button
-              onClick={() => onLeagueClick(focusedLeagues[0])}
-              className="text-xs font-semibold text-[#00E5A0] hover:text-emerald-300 flex items-center gap-1 transition-colors"
-            >
-              Ver todas <ArrowRight className="w-3 h-3" />
-            </button>
-          </div>
-
-          <div className="space-y-1.5 max-h-[380px] overflow-y-auto pr-1">
-            {focusedLeagues.map((league) => (
-              <div
-                key={league.id}
-                onClick={() => onLeagueClick(league)}
-                className="group flex items-center justify-between p-2.5 rounded-xl bg-[#09111E] border border-[#20375A] hover:border-[#00E5A0] hover:bg-[#0F1E36] transition-all cursor-pointer shadow-sm"
-              >
-                <div className="flex items-center gap-2.5">
-                  <span className="text-lg leading-none">{league.flag}</span>
-                  <div>
-                    <div className="font-heading font-bold text-sm text-slate-100 group-hover:text-[#00E5A0] transition-colors">
-                      {league.name}
-                    </div>
-                    <div className="text-[10px] text-slate-400 font-mono">
-                      {league.seasonInfo}
-                    </div>
-                  </div>
-                </div>
-                <ArrowRight className="w-3.5 h-3.5 text-[#64748B] group-hover:text-white group-hover:translate-x-1 transition-all" />
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      {/* Center Box: GLOBAL HUB ORB & 6 ORBITING NODES (8 cols) */}
-      <div className="lg:col-span-8 glass-panel rounded-2xl p-5 border border-[#2B4C7E] relative overflow-hidden flex flex-col justify-between min-h-[420px] shadow-[0_0_20px_rgba(0,0,0,0.4)]">
-        
-        {/* Background Ambient Glow & Grid Lines */}
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(59,130,246,0.12)_0,transparent_70%)]"></div>
-        <div className="absolute top-2 left-0 right-0 text-center">
-          <span className="text-[10px] font-heading font-black tracking-widest text-[#00E5A0] uppercase bg-[#00E5A0]/10 border border-[#00E5A0]/30 px-3 py-1 rounded-full">
-            EL FÚTBOL NUNCA SE DETIENE
+    <div className="space-y-4">
+      {/* Top Banner: Quick Summary Indicator */}
+      <div className="flex items-center justify-between bg-[#071324] border border-[#1B3254] px-4 py-2.5 rounded-2xl">
+        <div className="flex items-center gap-2">
+          <Zap className="w-4 h-4 text-[#00E5A0]" />
+          <span className="font-heading font-black text-sm text-white uppercase tracking-wider">
+            PARTIDOS Y PREDICCIONES CUANTITATIVAS DEL DÍA
           </span>
         </div>
-
-        {/* Center Orb Graphic */}
-        <div className="relative my-auto py-8 flex flex-col items-center justify-center">
-          
-          {/* Orbit Rings */}
-          <div className="absolute w-72 h-72 rounded-full border border-blue-500/20"></div>
-          <div className="absolute w-80 h-80 rounded-full border border-cyan-500/15"></div>
-
-          {/* Central Globe Graphic */}
-          <div className="relative z-10 w-48 h-48 rounded-full bg-[#081220] border-2 border-[#3B82F6]/50 flex flex-col items-center justify-center p-4 text-center">
-            <Globe2 className="w-8 h-8 text-[#00E5A0] mb-1" />
-            <h3 className="font-heading font-black text-xl text-white tracking-wider uppercase leading-tight">
-              FOOTBALL
-            </h3>
-            <div className="text-[10px] font-heading font-bold text-[#00E5A0] tracking-widest uppercase">
-              ANALYTICS CENTER
-            </div>
-            <div className="mt-1 text-[8px] font-mono text-slate-400 border-t border-[#1E3050] pt-1">
-              DATOS · ANÁLISIS · OPORTUNIDADES
-            </div>
-          </div>
-
-          {/* 6 Orbiting Circular Nodes positioned radially */}
-          {/* 1: Competiciones (Top Left) */}
-          <button
-            onClick={() => onNodeClick(hubNodes[0])}
-            onMouseEnter={() => setHoveredNode(hubNodes[0])}
-            onMouseLeave={() => setHoveredNode(null)}
-            className="absolute -top-2 left-6 md:left-12 flex items-center gap-2 bg-[#091322] border border-blue-500/50 hover:border-[#00E5A0] hover:bg-[#102038] transition-colors p-2.5 rounded-full group"
-          >
-            <div className="w-8 h-8 rounded-full bg-blue-600/20 text-blue-400 flex items-center justify-center group-hover:bg-[#00E5A0] group-hover:text-[#060B14] transition-colors">
-              <Trophy className="w-4 h-4" />
-            </div>
-            <div className="text-left pr-2 hidden sm:block">
-              <div className="font-heading font-bold text-xs text-white uppercase group-hover:text-[#00E5A0]">COMPETICIONES</div>
-              <div className="text-[9px] text-slate-400 leading-none">Ligas, copas, torneos</div>
-            </div>
-          </button>
-
-          {/* 2: Partidos (Top Right) */}
-          <button
-            onClick={() => onNodeClick(hubNodes[1])}
-            onMouseEnter={() => setHoveredNode(hubNodes[1])}
-            onMouseLeave={() => setHoveredNode(null)}
-            className="absolute -top-2 right-6 md:right-12 flex items-center gap-2 bg-[#091322] border border-rose-500/50 hover:border-[#00E5A0] hover:bg-[#102038] transition-colors p-2.5 rounded-full group"
-          >
-            <div className="w-8 h-8 rounded-full bg-rose-600/20 text-rose-400 flex items-center justify-center group-hover:bg-[#00E5A0] group-hover:text-[#060B14] transition-colors">
-              <CalendarDays className="w-4 h-4" />
-            </div>
-            <div className="text-left pr-2 hidden sm:block">
-              <div className="font-heading font-bold text-xs text-white uppercase group-hover:text-[#00E5A0]">PARTIDOS</div>
-              <div className="text-[9px] text-slate-400 leading-none">Hoy, próximos, resultados</div>
-            </div>
-          </button>
-
-          {/* 3: Jugadores (Middle Right) */}
-          <button
-            onClick={() => onNodeClick(hubNodes[2])}
-            onMouseEnter={() => setHoveredNode(hubNodes[2])}
-            onMouseLeave={() => setHoveredNode(null)}
-            className="absolute top-1/2 -translate-y-1/2 -right-2 sm:right-2 flex items-center gap-2 bg-[#091322] border border-purple-500/50 hover:border-[#00E5A0] hover:bg-[#102038] transition-colors p-2.5 rounded-full group"
-          >
-            <div className="w-8 h-8 rounded-full bg-purple-600/20 text-purple-400 flex items-center justify-center group-hover:bg-[#00E5A0] group-hover:text-[#060B14] transition-colors">
-              <UserCheck className="w-4 h-4" />
-            </div>
-            <div className="text-left pr-2 hidden sm:block">
-              <div className="font-heading font-bold text-xs text-white uppercase group-hover:text-[#00E5A0]">JUGADORES</div>
-              <div className="text-[9px] text-slate-400 leading-none">Stats, lesiones, rating</div>
-            </div>
-          </button>
-
-          {/* 4: Transferencias (Bottom Right) */}
-          <button
-            onClick={() => onNodeClick(hubNodes[3])}
-            onMouseEnter={() => setHoveredNode(hubNodes[3])}
-            onMouseLeave={() => setHoveredNode(null)}
-            className="absolute -bottom-2 right-6 md:right-12 flex items-center gap-2 bg-[#091322] border border-emerald-500/50 hover:border-[#00E5A0] hover:bg-[#102038] transition-colors p-2.5 rounded-full group"
-          >
-            <div className="w-8 h-8 rounded-full bg-emerald-600/20 text-emerald-400 flex items-center justify-center group-hover:bg-[#00E5A0] group-hover:text-[#060B14] transition-colors">
-              <Repeat className="w-4 h-4" />
-            </div>
-            <div className="text-left pr-2 hidden sm:block">
-              <div className="font-heading font-bold text-xs text-white uppercase group-hover:text-[#00E5A0]">TRANSFERENCIAS</div>
-              <div className="text-[9px] text-slate-400 leading-none">Rumores, fichajes, valores</div>
-            </div>
-          </button>
-
-          {/* 5: Inteligencia (Bottom Left) */}
-          <button
-            onClick={() => onNodeClick(hubNodes[4])}
-            onMouseEnter={() => setHoveredNode(hubNodes[4])}
-            onMouseLeave={() => setHoveredNode(null)}
-            className="absolute -bottom-2 left-6 md:left-12 flex items-center gap-2 bg-[#091322] border border-amber-500/50 hover:border-[#00E5A0] hover:bg-[#102038] transition-colors p-2.5 rounded-full group"
-          >
-            <div className="w-8 h-8 rounded-full bg-amber-600/20 text-amber-400 flex items-center justify-center group-hover:bg-[#00E5A0] group-hover:text-[#060B14] transition-colors">
-              <Brain className="w-4 h-4" />
-            </div>
-            <div className="text-left pr-2 hidden sm:block">
-              <div className="font-heading font-bold text-xs text-white uppercase group-hover:text-[#00E5A0]">INTELIGENCIA</div>
-              <div className="text-[9px] text-slate-400 leading-none">Predicciones, value bets</div>
-            </div>
-          </button>
-
-          {/* 6: Equipos (Middle Left) */}
-          <button
-            onClick={() => onNodeClick(hubNodes[5])}
-            onMouseEnter={() => setHoveredNode(hubNodes[5])}
-            onMouseLeave={() => setHoveredNode(null)}
-            className="absolute top-1/2 -translate-y-1/2 -left-2 sm:left-2 flex items-center gap-2 bg-[#091322] border border-cyan-500/50 hover:border-[#00E5A0] hover:bg-[#102038] transition-colors p-2.5 rounded-full group"
-          >
-            <div className="w-8 h-8 rounded-full bg-cyan-600/20 text-cyan-400 flex items-center justify-center group-hover:bg-[#00E5A0] group-hover:text-[#060B14] transition-colors">
-              <Shield className="w-4 h-4" />
-            </div>
-            <div className="text-left pr-2 hidden sm:block">
-              <div className="font-heading font-bold text-xs text-white uppercase group-hover:text-[#00E5A0]">EQUIPOS</div>
-              <div className="text-[9px] text-slate-400 leading-none">Rendimiento, forma, stats</div>
-            </div>
-          </button>
-
+        <div className="flex items-center gap-3 text-xs text-slate-400 font-mono">
+          <span className="flex items-center gap-1">
+            <span className="w-2 h-2 rounded-full bg-rose-500 animate-ping"></span>
+            <span className="text-white font-bold">4</span> En Vivo
+          </span>
+          <span className="text-[#00E5A0] font-bold">5 Value Bets (+EV)</span>
         </div>
-
-        {/* Hover Banner info */}
-        <div className="text-center pt-2 border-t border-[#1E3050]">
-          {hoveredNode ? (
-            <div className="text-xs text-[#00E5A0] font-mono animate-fade-in">
-              💡 <span className="font-bold uppercase">{hoveredNode.title}:</span> {hoveredNode.description}
-            </div>
-          ) : (
-            <div className="text-[11px] text-slate-400 font-heading font-bold tracking-widest uppercase">
-              UN AÑO. TODAS LAS COMPETICIONES. UNA SOLA PLATAFORMA.
-            </div>
-          )}
-        </div>
-
       </div>
 
+      {/* League Accordion List (FotMob-Style) */}
+      {filteredLeagues.length === 0 ? (
+        <div className="p-8 text-center bg-[#071324] border border-[#1B3254] rounded-2xl space-y-2">
+          <p className="text-slate-300 font-medium">No hay partidos que coincidan con el filtro seleccionado.</p>
+          <p className="text-xs text-slate-500">Prueba cambiando el filtro a "TODOS" en la barra superior.</p>
+        </div>
+      ) : (
+        filteredLeagues.map((league) => {
+          const isCollapsed = collapsedLeagues[league.id];
+
+          return (
+            <div
+              key={league.id}
+              className="bg-[#050C18] border border-[#142844] rounded-2xl overflow-hidden"
+            >
+              {/* League Header (Accordion Bar) */}
+              <div
+                onClick={() => toggleLeague(league.id)}
+                className="flex items-center justify-between px-4 py-3 bg-[#081528] border-b border-[#142844] cursor-pointer hover:bg-[#0B1E38] transition-colors"
+              >
+                <div className="flex items-center gap-2.5">
+                  <span className="text-xl leading-none">{league.flag}</span>
+                  <div>
+                    <h2 className="font-heading font-black text-sm text-white uppercase tracking-wider flex items-center gap-2">
+                      {league.name}
+                      <span className="text-[10px] font-mono font-normal text-slate-400 bg-[#0F223D] px-2 py-0.5 rounded-full">
+                        {league.region}
+                      </span>
+                    </h2>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-3">
+                  <span className="text-xs font-mono text-[#00E5A0] font-semibold">
+                    {league.matches.length} {league.matches.length === 1 ? 'partido' : 'partidos'}
+                  </span>
+                  <button className="p-1 text-slate-400 hover:text-white transition-colors">
+                    {isCollapsed ? (
+                      <ChevronDown className="w-4 h-4" />
+                    ) : (
+                      <ChevronUp className="w-4 h-4" />
+                    )}
+                  </button>
+                </div>
+              </div>
+
+              {/* Match Rows inside League */}
+              {!isCollapsed && (
+                <div className="divide-y divide-[#102038]">
+                  {league.matches.map((match) => (
+                    <div
+                      key={match.id}
+                      onClick={() => onSelectMatch(match)}
+                      className="group p-3 sm:p-4 hover:bg-[#09182E] transition-colors cursor-pointer flex flex-col md:flex-row md:items-center justify-between gap-3"
+                    >
+                      {/* Left: Status & Teams */}
+                      <div className="flex items-center gap-4 flex-1">
+                        {/* Time / Live Indicator */}
+                        <div className="w-20 shrink-0 text-center">
+                          {match.status === 'LIVE' ? (
+                            <div className="flex flex-col items-center">
+                              <span className="inline-flex items-center gap-1 bg-rose-600/20 text-rose-400 border border-rose-500/40 text-[10px] font-mono font-bold px-2 py-0.5 rounded-full animate-pulse">
+                                <span className="w-1.5 h-1.5 rounded-full bg-rose-500"></span>
+                                {match.time}
+                              </span>
+                            </div>
+                          ) : match.status === 'FINISHED' ? (
+                            <span className="text-[10px] font-mono font-bold text-slate-400 bg-[#0F2036] px-2 py-0.5 rounded-full">
+                              FINAL
+                            </span>
+                          ) : (
+                            <span className="text-[11px] font-mono font-bold text-blue-400 bg-blue-900/20 border border-blue-500/30 px-2 py-0.5 rounded-md">
+                              {match.time}
+                            </span>
+                          )}
+                        </div>
+
+                        {/* Teams & Score / VS */}
+                        <div className="flex-1 space-y-1">
+                          {/* Home Team */}
+                          <div className="flex items-center justify-between">
+                            <div className="flex items-center gap-2">
+                              <span className="text-base">{match.homeFlag}</span>
+                              <span className="font-heading font-bold text-sm text-slate-100 group-hover:text-[#00E5A0] transition-colors">
+                                {match.homeTeam}
+                              </span>
+                            </div>
+                            <span className="font-mono font-black text-sm text-white">
+                              {match.scoreHome !== undefined ? match.scoreHome : '-'}
+                            </span>
+                          </div>
+
+                          {/* Away Team */}
+                          <div className="flex items-center justify-between">
+                            <div className="flex items-center gap-2">
+                              <span className="text-base">{match.awayFlag}</span>
+                              <span className="font-heading font-bold text-sm text-slate-100 group-hover:text-[#00E5A0] transition-colors">
+                                {match.awayTeam}
+                              </span>
+                            </div>
+                            <span className="font-mono font-black text-sm text-white">
+                              {match.scoreAway !== undefined ? match.scoreAway : '-'}
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Right: AI Intelligence & Odds */}
+                      <div className="flex items-center justify-between md:justify-end gap-3 pt-2 md:pt-0 border-t md:border-t-0 border-[#12243E]">
+                        
+                        {/* AI xG & Win Prob Badges */}
+                        <div className="flex items-center gap-2">
+                          <div className="bg-[#09172A] border border-[#1A3050] px-2.5 py-1 rounded-xl text-[11px] font-mono text-slate-300">
+                            <span className="text-slate-400 text-[9px] block">PROY. xG</span>
+                            <span className="font-bold text-[#00E5A0]">{match.xGHome}</span>
+                            <span className="text-slate-500 mx-1">-</span>
+                            <span className="font-bold text-slate-200">{match.xGAway}</span>
+                          </div>
+
+                          {match.valueBetEV && (
+                            <div className="bg-[#00E5A0]/10 border border-[#00E5A0]/40 text-[#00E5A0] px-2 py-1 rounded-xl text-[10px] font-heading font-black tracking-wider uppercase">
+                              +EV {match.valueBetEV}%
+                            </div>
+                          )}
+                        </div>
+
+                        {/* Odds 1 X 2 */}
+                        <div className="flex items-center gap-1 font-mono text-xs">
+                          <span className="bg-[#0A182C] border border-[#1B3252] text-slate-200 px-2 py-1 rounded-lg hover:border-[#00E5A0] transition-colors">
+                            {match.odds1.toFixed(2)}
+                          </span>
+                          <span className="bg-[#0A182C] border border-[#1B3252] text-slate-200 px-2 py-1 rounded-lg hover:border-[#00E5A0] transition-colors">
+                            {match.oddsX.toFixed(2)}
+                          </span>
+                          <span className="bg-[#0A182C] border border-[#1B3252] text-slate-200 px-2 py-1 rounded-lg hover:border-[#00E5A0] transition-colors">
+                            {match.odds2.toFixed(2)}
+                          </span>
+                        </div>
+
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+          );
+        })
+      )}
     </div>
   );
 };

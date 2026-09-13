@@ -10,7 +10,8 @@ import { DetailModal } from './components/DetailModal';
 
 export function App() {
   const [activeTab, setActiveTab] = useState('dashboard');
-  const [selectedView, setSelectedView] = useState('todos');
+  const [selectedFilter, setSelectedFilter] = useState('todos');
+  const [selectedDate, setSelectedDate] = useState('2026-09-12');
   const [modalData, setModalData] = useState<{ title: string; content: React.ReactNode } | null>(null);
 
   const handleOddsSelect = (match: string, type: string, value: number) => {
@@ -131,7 +132,12 @@ export function App() {
       <Header onSearchOpen={() => {}} />
 
       {/* Timeline Bar */}
-      <TimelineBar selectedView={selectedView} onSelectView={setSelectedView} />
+      <TimelineBar
+        selectedFilter={selectedFilter}
+        onSelectFilter={setSelectedFilter}
+        selectedDate={selectedDate}
+        onSelectDate={setSelectedDate}
+      />
 
       {/* Main Layout Area */}
       <div className="flex-1 flex max-w-[1920px] w-full mx-auto">
@@ -147,6 +153,7 @@ export function App() {
               <CentralHub
                 onSelectMatch={handleMatchClick}
                 onLeagueClick={handleLeagueClick}
+                selectedFilter={selectedFilter}
               />
             </div>
 
@@ -158,7 +165,6 @@ export function App() {
 
           {/* Bottom Grid Section */}
           <BottomSection
-            onSelectMatch={handleMatchClick}
             onSelectNews={handleNewsClick}
           />
         </main>
