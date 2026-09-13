@@ -305,18 +305,18 @@ export const MATCH_TREND_POINTS: MatchTrendPoint[] = [
 ];
 
 export const timelineStages = [
-  { id: '1', label: 'ENE', active: false },
-  { id: '2', label: 'FEB', active: false },
-  { id: '3', label: 'MAR', active: false },
-  { id: '4', label: 'ABR', active: false },
-  { id: '5', label: 'MAY', active: false },
-  { id: '6', label: 'JUN', active: false },
-  { id: '7', label: 'JUL', active: false },
-  { id: '8', label: 'AGO', active: false },
-  { id: '9', label: 'SEP', active: false },
-  { id: '10', label: 'OCT', active: true },
-  { id: '11', label: 'NOV', active: false },
-  { id: '12', label: 'DIC', active: false }
+  { id: '1', label: 'ENE', month: 'ENE', stageName: 'Enero', active: false },
+  { id: '2', label: 'FEB', month: 'FEB', stageName: 'Febrero', active: false },
+  { id: '3', label: 'MAR', month: 'MAR', stageName: 'Marzo', active: false },
+  { id: '4', label: 'ABR', month: 'ABR', stageName: 'Abril', active: false },
+  { id: '5', label: 'MAY', month: 'MAY', stageName: 'Mayo', active: false },
+  { id: '6', label: 'JUN', month: 'JUN', stageName: 'Junio', active: false },
+  { id: '7', label: 'JUL', month: 'JUL', stageName: 'Julio', active: false },
+  { id: '8', label: 'AGO', month: 'AGO', stageName: 'Agosto', active: false },
+  { id: '9', label: 'SEP', month: 'SEP', stageName: 'Septiembre', active: false },
+  { id: '10', label: 'OCT', month: 'OCT', stageName: 'Octubre', active: true },
+  { id: '11', label: 'NOV', month: 'NOV', stageName: 'Noviembre', active: false },
+  { id: '12', label: 'DIC', month: 'DIC', stageName: 'Diciembre', active: false }
 ];
 
 export const focusLeagues = [

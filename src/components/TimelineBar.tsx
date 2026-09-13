@@ -71,33 +71,33 @@ export const TimelineBar: React.FC<TimelineBarProps> = ({ selectedView, onSelect
         </div>
 
         {/* Horizontal Timeline Bar across Months */}
-        <div className="relative pt-1 pb-1">
+        <div className="relative pt-1 pb-1 overflow-x-auto no-scrollbar">
           {/* Connecting Line */}
-          <div className="absolute top-4 left-0 right-0 h-0.5 bg-gradient-to-r from-blue-900 via-cyan-500 to-indigo-900 opacity-60 z-0"></div>
+          <div className="absolute top-4 left-4 right-4 h-0.5 bg-[#1E3254] z-0"></div>
 
-          <div className="grid grid-cols-12 gap-1 relative z-10">
+          <div className="grid grid-cols-12 min-w-[650px] gap-1 relative z-10">
             {timelineStages.map((stage) => {
               const isActive = activeStageId === stage.id;
               return (
                 <div
                   key={stage.id}
                   onClick={() => setActiveStageId(stage.id)}
-                  className="flex flex-col items-center group cursor-pointer"
+                  className="flex flex-col items-center group cursor-pointer select-none"
                 >
                   {/* Month Marker Circle */}
                   <div
-                    className={`w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-mono font-bold transition-all duration-300 ${
+                    className={`w-7 h-7 rounded-full flex items-center justify-center text-[11px] font-mono font-bold transition-colors ${
                       isActive
-                        ? 'bg-[#00E5A0] text-[#060B14] ring-4 ring-[#00E5A0]/30 shadow-[0_0_15px_#00E5A0] scale-110'
+                        ? 'bg-[#00E5A0] text-[#060B14] font-black'
                         : 'bg-[#0E1B2E] border border-[#203654] text-[#94A3B8] group-hover:border-[#3B82F6] group-hover:text-white'
                     }`}
                   >
-                    {stage.month}
+                    {stage.label}
                   </div>
 
                   {/* Stage Label Below Marker */}
                   <div
-                    className={`text-[9px] text-center mt-1.5 leading-tight px-0.5 transition-colors line-clamp-2 ${
+                    className={`text-[10px] text-center mt-1 leading-tight px-0.5 ${
                       isActive
                         ? 'text-[#00E5A0] font-bold uppercase tracking-tight'
                         : 'text-[#64748B] group-hover:text-slate-300'
