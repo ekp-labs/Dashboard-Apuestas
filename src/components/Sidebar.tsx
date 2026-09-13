@@ -91,13 +91,19 @@ export const Sidebar: React.FC<SidebarProps> = ({ activeTab, onSelectTab }) => {
           {/* Dark Gradient Overlay for text contrast */}
           <div className="absolute inset-0 bg-gradient-to-t from-[#050A14] via-[#050A14]/70 to-transparent" />
 
-          {/* Quote Text */}
-          <div className="relative z-10 text-left space-y-0.5">
-            <p className="text-xs text-slate-200 font-serif italic leading-snug">
-              "More than a game."
-            </p>
-            <p className="text-xs text-slate-200 font-serif italic leading-snug">
-              "A year of opportunities."
+          {/* Live Stats Content */}
+          <div className="relative z-10 text-left space-y-1">
+            <div className="flex items-center gap-2">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#00E5A0] opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-[#00E5A0]"></span>
+              </span>
+              <p className="text-sm font-heading font-black text-white uppercase tracking-wider">
+                Live Stats
+              </p>
+            </div>
+            <p className="text-[11px] text-slate-300 font-medium leading-tight">
+              Análisis y cuotas actualizadas en tiempo real
             </p>
           </div>
         </div>

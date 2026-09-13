@@ -380,7 +380,7 @@ export const navItems = [
   { id: 'comparador', label: 'Transferencias', icon: 'Repeat' },
   { id: 'noticias', label: 'Noticias', icon: 'Newspaper', hasDividerAfter: true },
   { id: 'eventos', label: 'Calendario', icon: 'Calendar' },
-  { id: 'estadisticas', label: 'Estadísticas', icon: 'BarChart3' },
+  { id: 'estadisticas', label: 'Live Stats', icon: 'BarChart3' },
   { id: 'configuracion', label: 'Configuración', icon: 'Settings' }
 ];
 
