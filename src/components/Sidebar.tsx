@@ -1,7 +1,7 @@
 import React from 'react';
 import {
   Home,
-  Trophy,
+  Shield,
   Users,
   User,
   CalendarDays,
@@ -12,8 +12,7 @@ import {
   Calendar,
   BarChart3,
   Settings,
-  ChevronRight,
-  Sparkles
+  ChevronRight
 } from 'lucide-react';
 import { navItems } from '../data/mockData';
 
@@ -24,7 +23,7 @@ interface SidebarProps {
 
 const iconMap: Record<string, React.ElementType> = {
   Home,
-  Trophy,
+  Shield,
   Users,
   User,
   CalendarDays,
@@ -39,7 +38,7 @@ const iconMap: Record<string, React.ElementType> = {
 
 export const Sidebar: React.FC<SidebarProps> = ({ activeTab, onSelectTab }) => {
   return (
-    <aside className="w-56 shrink-0 bg-[#060B14] border-r border-[#24426C] flex flex-col justify-between p-3 min-h-[calc(100vh-60px)]">
+    <aside className="w-56 shrink-0 bg-[#050A14] border-r border-[#1B2A4A] flex flex-col justify-between p-3 min-h-[calc(100vh-60px)] select-none">
       
       {/* Navigation List */}
       <nav className="space-y-1">
@@ -48,58 +47,59 @@ export const Sidebar: React.FC<SidebarProps> = ({ activeTab, onSelectTab }) => {
           const isActive = activeTab === item.id;
 
           return (
-            <button
-              key={item.id}
-              onClick={() => onSelectTab(item.id)}
-              className={`w-full flex items-center justify-between px-3 py-2 rounded-xl text-xs font-heading font-bold uppercase tracking-wider transition-all duration-200 group ${
-                isActive
-                  ? 'bg-gradient-to-r from-blue-700/80 via-blue-600/70 to-blue-500/50 text-white border border-blue-400/30 shadow-[0_0_15px_rgba(37,99,235,0.4)]'
-                  : 'text-[#94A3B8] hover:text-white hover:bg-[#0E1A2E]'
-              }`}
-            >
-              <div className="flex items-center gap-3">
-                <IconComponent
-                  className={`w-4 h-4 transition-colors ${
-                    isActive ? 'text-[#00E5A0]' : 'text-[#64748B] group-hover:text-blue-400'
-                  }`}
-                />
-                <span>{item.label}</span>
-              </div>
+            <React.Fragment key={item.id}>
+              <button
+                onClick={() => onSelectTab(item.id)}
+                className={`w-full flex items-center justify-between px-3 py-2.5 rounded-xl text-sm transition-all duration-200 group ${
+                  isActive
+                    ? 'bg-gradient-to-r from-[#0C3875] via-[#0A2E60] to-[#082247] text-white font-semibold border border-[#2563EB] shadow-[0_0_15px_rgba(37,99,235,0.4)]'
+                    : 'text-slate-300 font-medium hover:text-white hover:bg-[#0E1B32]'
+                }`}
+              >
+                <div className="flex items-center gap-3">
+                  <IconComponent
+                    className={`w-[18px] h-[18px] shrink-0 transition-colors ${
+                      isActive ? 'text-white' : 'text-slate-300 group-hover:text-blue-400'
+                    }`}
+                  />
+                  <span>{item.label}</span>
+                </div>
 
-              {item.hasSubmenu && (
-                <ChevronRight className={`w-3.5 h-3.5 text-[#64748B] ${isActive ? 'text-[#00E5A0]' : ''}`} />
+                {item.hasSubmenu && (
+                  <ChevronRight className={`w-4 h-4 text-slate-400 ${isActive ? 'text-white' : ''}`} />
+                )}
+              </button>
+
+              {item.hasDividerAfter && (
+                <div className="my-2.5 border-t border-[#1C2C4A]" />
               )}
-            </button>
+            </React.Fragment>
           );
         })}
       </nav>
 
-      {/* Bottom Stadium Banner (Matching image) */}
-      <div className="mt-6 pt-3 border-t border-[#24426C] space-y-3">
-        <div className="relative rounded-2xl overflow-hidden border border-[#2B4C7E] bg-gradient-to-b from-[#0B1526] to-[#050A12] p-3 text-center group shadow-[0_0_15px_rgba(0,0,0,0.5)]">
-          {/* Background Stadium Glow Image */}
+      {/* Bottom Stadium Card matching image */}
+      <div className="mt-4 pt-2">
+        <div className="relative rounded-2xl overflow-hidden border border-[#1E3258] h-40 group shadow-lg flex flex-col justify-end p-3.5">
+          {/* Background Stadium Image */}
           <div
-            className="absolute inset-0 bg-cover bg-center opacity-30 group-hover:opacity-40 transition-opacity"
+            className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105"
             style={{
-              backgroundImage: `url('https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=400&auto=format&fit=crop&q=80')`
+              backgroundImage: `url('https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=500&auto=format&fit=crop&q=80')`
             }}
-          ></div>
-          <div className="absolute inset-0 bg-gradient-to-t from-[#060B14] via-[#060B14]/60 to-transparent"></div>
+          />
+          {/* Dark Gradient Overlay for text contrast */}
+          <div className="absolute inset-0 bg-gradient-to-t from-[#050A14] via-[#050A14]/70 to-transparent" />
 
-          <div className="relative z-10 space-y-1.5">
-            <div className="w-7 h-7 rounded-full bg-[#00E5A0]/20 border border-[#00E5A0]/50 mx-auto flex items-center justify-center">
-              <Sparkles className="w-3.5 h-3.5 text-[#00E5A0]" />
-            </div>
-            <p className="text-[11px] italic text-slate-300 leading-tight">
-              "More than a game. A year of opportunities."
+          {/* Quote Text */}
+          <div className="relative z-10 text-left space-y-0.5">
+            <p className="text-xs text-slate-200 font-serif italic leading-snug">
+              "More than a game."
+            </p>
+            <p className="text-xs text-slate-200 font-serif italic leading-snug">
+              "A year of opportunities."
             </p>
           </div>
-        </div>
-
-        {/* Version Badge */}
-        <div className="text-center text-[10px] text-[#64748B] font-mono tracking-wider uppercase">
-          <div>v0.1.0</div>
-          <div className="text-[9px] text-[#00E5A0]/80">FOOTBALL ANALYTICS CENTER</div>
         </div>
       </div>
 

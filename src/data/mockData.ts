@@ -370,17 +370,18 @@ export const liveStats = {
 };
 
 export const navItems = [
-  { id: 'dashboard', label: 'DASHBOARD', icon: 'Home', isNew: false, isAi: false },
-  { id: 'competiciones', label: 'COMPETICIONES', icon: 'Trophy', isNew: false, isAi: false },
-  { id: 'equipos', label: 'EQUIPOS', icon: 'Users', isNew: false, isAi: false },
-  { id: 'jugadores', label: 'JUGADORES', icon: 'User', isNew: false, isAi: false },
-  { id: 'partidos', label: 'PARTIDOS Y CALENDARIO', icon: 'CalendarDays', isNew: false, isAi: false },
-  { id: 'ia-predicciones', label: 'IA PREDICCIONES Y XG', icon: 'Brain', isNew: true, isAi: true },
-  { id: 'cuotas-valor', label: 'CUOTAS Y VALUE BETS', icon: 'TrendingUp', isNew: false, isAi: false },
-  { id: 'comparador', label: 'COMPARADOR DE CASAS', icon: 'Repeat', isNew: false, isAi: false },
-  { id: 'noticias', label: 'NOTICIAS Y REPORTES', icon: 'Newspaper', isNew: false, isAi: false },
-  { id: 'eventos', label: 'EVENTOS DESTACADOS', icon: 'Calendar', isNew: false, isAi: false },
-  { id: 'estadisticas', label: 'ESTADÍSTICAS AVANZADAS', icon: 'BarChart3', isNew: false, isAi: false }
+  { id: 'dashboard', label: 'Inicio', icon: 'Home' },
+  { id: 'competiciones', label: 'Competiciones', icon: 'Shield' },
+  { id: 'equipos', label: 'Equipos', icon: 'Users' },
+  { id: 'jugadores', label: 'Jugadores', icon: 'User' },
+  { id: 'partidos', label: 'Partidos', icon: 'CalendarDays' },
+  { id: 'ia-predicciones', label: 'Inteligencia', icon: 'Brain', hasSubmenu: true },
+  { id: 'cuotas-valor', label: 'Apuestas', icon: 'TrendingUp' },
+  { id: 'comparador', label: 'Transferencias', icon: 'Repeat' },
+  { id: 'noticias', label: 'Noticias', icon: 'Newspaper', hasDividerAfter: true },
+  { id: 'eventos', label: 'Calendario', icon: 'Calendar' },
+  { id: 'estadisticas', label: 'Estadísticas', icon: 'BarChart3' },
+  { id: 'configuracion', label: 'Configuración', icon: 'Settings' }
 ];
 
 export const focusedLeagues = [
