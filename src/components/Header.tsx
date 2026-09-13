@@ -47,7 +47,7 @@ export const Header: React.FC<HeaderProps> = ({
   ];
 
   return (
-    <header className="sticky top-0 z-50 w-full bg-[#060B14]/90 backdrop-blur-xl border-b border-cyan-500/20 px-4 py-2.5 transition-all">
+    <header className="sticky top-0 z-50 w-full bg-[#060B14] border-b border-cyan-500/20 px-4 py-2.5 transition-all">
       <div className="max-w-[1920px] mx-auto flex flex-col xl:flex-row items-center justify-between gap-3">
         
         {/* Left Brand Logo & Live Badge */}

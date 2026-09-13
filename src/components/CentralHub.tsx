@@ -89,13 +89,13 @@ export const CentralHub: React.FC<CentralHubProps> = ({ onNodeClick, onLeagueCli
         {/* Center Orb Graphic */}
         <div className="relative my-auto py-8 flex flex-col items-center justify-center">
           
-          {/* Animated Orbit Rings */}
-          <div className="absolute w-72 h-72 rounded-full border border-blue-500/20 animate-spin-slow"></div>
-          <div className="absolute w-80 h-80 rounded-full border border-cyan-500/15 animate-spin-reverse-slow"></div>
+          {/* Orbit Rings */}
+          <div className="absolute w-72 h-72 rounded-full border border-blue-500/20"></div>
+          <div className="absolute w-80 h-80 rounded-full border border-cyan-500/15"></div>
 
           {/* Central Globe Graphic */}
-          <div className="relative z-10 w-48 h-48 rounded-full bg-gradient-to-br from-[#0D1F38] via-[#081220] to-[#040810] border-2 border-[#3B82F6]/50 shadow-[0_0_40px_rgba(59,130,246,0.3)] flex flex-col items-center justify-center p-4 text-center">
-            <Globe2 className="w-8 h-8 text-[#00E5A0] mb-1 animate-pulse" />
+          <div className="relative z-10 w-48 h-48 rounded-full bg-[#081220] border-2 border-[#3B82F6]/50 flex flex-col items-center justify-center p-4 text-center">
+            <Globe2 className="w-8 h-8 text-[#00E5A0] mb-1" />
             <h3 className="font-heading font-black text-xl text-white tracking-wider uppercase leading-tight">
               FOOTBALL
             </h3>
