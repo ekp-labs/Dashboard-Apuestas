@@ -18,7 +18,7 @@ export const BottomSection: React.FC<BottomSectionProps> = ({
     <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 pt-2">
       
       {/* COLUMN 1: PRÓXIMOS PARTIDOS (5 Cols) */}
-      <div className="lg:col-span-5 glass-panel rounded-2xl p-4 border border-[#2B4C7E] shadow-[0_0_20px_rgba(0,0,0,0.4)]">
+      <div className="lg:col-span-5 glass-panel rounded-2xl p-4 border border-[#2B4C7E]">
         <div className="flex flex-wrap items-center justify-between gap-2 pb-3 border-b border-[#24426C] mb-3">
           <div className="flex items-center gap-2">
             <Calendar className="w-4 h-4 text-[#00E5A0]" />
@@ -106,7 +106,7 @@ export const BottomSection: React.FC<BottomSectionProps> = ({
       </div>
 
       {/* COLUMN 2: NOTICIAS RELEVANTES (4 Cols) */}
-      <div className="lg:col-span-4 glass-panel rounded-2xl p-4 border border-[#2B4C7E] shadow-[0_0_20px_rgba(0,0,0,0.4)]">
+      <div className="lg:col-span-4 glass-panel rounded-2xl p-4 border border-[#2B4C7E]">
         <div className="flex items-center justify-between pb-3 border-b border-[#24426C] mb-3">
           <div className="flex items-center gap-2">
             <Newspaper className="w-4 h-4 text-blue-400" />
@@ -146,7 +146,7 @@ export const BottomSection: React.FC<BottomSectionProps> = ({
       </div>
 
       {/* COLUMN 3: ESTADÍSTICAS EN TIEMPO REAL (3 Cols) */}
-      <div className="lg:col-span-3 glass-panel rounded-2xl p-4 border border-[#2B4C7E] flex flex-col justify-between shadow-[0_0_20px_rgba(0,0,0,0.4)]">
+      <div className="lg:col-span-3 glass-panel rounded-2xl p-4 border border-[#2B4C7E] flex flex-col justify-between">
         <div>
           <div className="flex items-center justify-between pb-3 border-b border-[#24426C] mb-3">
             <h2 className="font-heading font-black text-base text-white uppercase tracking-wider">

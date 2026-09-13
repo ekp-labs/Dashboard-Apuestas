@@ -51,7 +51,7 @@ export const RightColumn: React.FC<RightColumnProps> = ({ onSelectOdds }) => {
     <div className="space-y-4">
       
       {/* CARD 1: PARTIDO DESTACADO - MATCHING SCREENSHOT EXACTLY */}
-      <div className="bg-[#040A15] rounded-2xl p-4 sm:p-5 border border-[#122A4A] shadow-[0_0_25px_rgba(0,0,0,0.6)] space-y-4">
+      <div className="bg-[#040A15] rounded-2xl p-4 sm:p-5 border border-[#122A4A] space-y-4">
         
         {/* Header Row */}
         <div className="flex items-center justify-between">

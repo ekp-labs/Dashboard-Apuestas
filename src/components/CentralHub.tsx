@@ -113,7 +113,7 @@ export const CentralHub: React.FC<CentralHubProps> = ({ onNodeClick, onLeagueCli
             onClick={() => onNodeClick(hubNodes[0])}
             onMouseEnter={() => setHoveredNode(hubNodes[0])}
             onMouseLeave={() => setHoveredNode(null)}
-            className="absolute -top-2 left-6 md:left-12 flex items-center gap-2 bg-[#091322] border border-blue-500/50 hover:border-[#00E5A0] hover:bg-[#102038] hover:scale-105 transition-all p-2.5 rounded-full shadow-[0_0_15px_rgba(59,130,246,0.25)] group"
+            className="absolute -top-2 left-6 md:left-12 flex items-center gap-2 bg-[#091322] border border-blue-500/50 hover:border-[#00E5A0] hover:bg-[#102038] transition-colors p-2.5 rounded-full group"
           >
             <div className="w-8 h-8 rounded-full bg-blue-600/20 text-blue-400 flex items-center justify-center group-hover:bg-[#00E5A0] group-hover:text-[#060B14] transition-colors">
               <Trophy className="w-4 h-4" />
@@ -129,7 +129,7 @@ export const CentralHub: React.FC<CentralHubProps> = ({ onNodeClick, onLeagueCli
             onClick={() => onNodeClick(hubNodes[1])}
             onMouseEnter={() => setHoveredNode(hubNodes[1])}
             onMouseLeave={() => setHoveredNode(null)}
-            className="absolute -top-2 right-6 md:right-12 flex items-center gap-2 bg-[#091322] border border-rose-500/50 hover:border-[#00E5A0] hover:bg-[#102038] hover:scale-105 transition-all p-2.5 rounded-full shadow-[0_0_15px_rgba(244,63,94,0.25)] group"
+            className="absolute -top-2 right-6 md:right-12 flex items-center gap-2 bg-[#091322] border border-rose-500/50 hover:border-[#00E5A0] hover:bg-[#102038] transition-colors p-2.5 rounded-full group"
           >
             <div className="w-8 h-8 rounded-full bg-rose-600/20 text-rose-400 flex items-center justify-center group-hover:bg-[#00E5A0] group-hover:text-[#060B14] transition-colors">
               <CalendarDays className="w-4 h-4" />
@@ -145,7 +145,7 @@ export const CentralHub: React.FC<CentralHubProps> = ({ onNodeClick, onLeagueCli
             onClick={() => onNodeClick(hubNodes[2])}
             onMouseEnter={() => setHoveredNode(hubNodes[2])}
             onMouseLeave={() => setHoveredNode(null)}
-            className="absolute top-1/2 -translate-y-1/2 -right-2 sm:right-2 flex items-center gap-2 bg-[#091322] border border-purple-500/50 hover:border-[#00E5A0] hover:bg-[#102038] hover:scale-105 transition-all p-2.5 rounded-full shadow-[0_0_15px_rgba(168,85,247,0.25)] group"
+            className="absolute top-1/2 -translate-y-1/2 -right-2 sm:right-2 flex items-center gap-2 bg-[#091322] border border-purple-500/50 hover:border-[#00E5A0] hover:bg-[#102038] transition-colors p-2.5 rounded-full group"
           >
             <div className="w-8 h-8 rounded-full bg-purple-600/20 text-purple-400 flex items-center justify-center group-hover:bg-[#00E5A0] group-hover:text-[#060B14] transition-colors">
               <UserCheck className="w-4 h-4" />
@@ -161,7 +161,7 @@ export const CentralHub: React.FC<CentralHubProps> = ({ onNodeClick, onLeagueCli
             onClick={() => onNodeClick(hubNodes[3])}
             onMouseEnter={() => setHoveredNode(hubNodes[3])}
             onMouseLeave={() => setHoveredNode(null)}
-            className="absolute -bottom-2 right-6 md:right-12 flex items-center gap-2 bg-[#091322] border border-emerald-500/50 hover:border-[#00E5A0] hover:bg-[#102038] hover:scale-105 transition-all p-2.5 rounded-full shadow-[0_0_15px_rgba(16,185,129,0.25)] group"
+            className="absolute -bottom-2 right-6 md:right-12 flex items-center gap-2 bg-[#091322] border border-emerald-500/50 hover:border-[#00E5A0] hover:bg-[#102038] transition-colors p-2.5 rounded-full group"
           >
             <div className="w-8 h-8 rounded-full bg-emerald-600/20 text-emerald-400 flex items-center justify-center group-hover:bg-[#00E5A0] group-hover:text-[#060B14] transition-colors">
               <Repeat className="w-4 h-4" />
@@ -177,7 +177,7 @@ export const CentralHub: React.FC<CentralHubProps> = ({ onNodeClick, onLeagueCli
             onClick={() => onNodeClick(hubNodes[4])}
             onMouseEnter={() => setHoveredNode(hubNodes[4])}
             onMouseLeave={() => setHoveredNode(null)}
-            className="absolute -bottom-2 left-6 md:left-12 flex items-center gap-2 bg-[#091322] border border-amber-500/50 hover:border-[#00E5A0] hover:bg-[#102038] hover:scale-105 transition-all p-2.5 rounded-full shadow-[0_0_15px_rgba(245,158,11,0.25)] group"
+            className="absolute -bottom-2 left-6 md:left-12 flex items-center gap-2 bg-[#091322] border border-amber-500/50 hover:border-[#00E5A0] hover:bg-[#102038] transition-colors p-2.5 rounded-full group"
           >
             <div className="w-8 h-8 rounded-full bg-amber-600/20 text-amber-400 flex items-center justify-center group-hover:bg-[#00E5A0] group-hover:text-[#060B14] transition-colors">
               <Brain className="w-4 h-4" />
@@ -193,7 +193,7 @@ export const CentralHub: React.FC<CentralHubProps> = ({ onNodeClick, onLeagueCli
             onClick={() => onNodeClick(hubNodes[5])}
             onMouseEnter={() => setHoveredNode(hubNodes[5])}
             onMouseLeave={() => setHoveredNode(null)}
-            className="absolute top-1/2 -translate-y-1/2 -left-2 sm:left-2 flex items-center gap-2 bg-[#091322] border border-cyan-500/50 hover:border-[#00E5A0] hover:bg-[#102038] hover:scale-105 transition-all p-2.5 rounded-full shadow-[0_0_15px_rgba(6,182,212,0.25)] group"
+            className="absolute top-1/2 -translate-y-1/2 -left-2 sm:left-2 flex items-center gap-2 bg-[#091322] border border-cyan-500/50 hover:border-[#00E5A0] hover:bg-[#102038] transition-colors p-2.5 rounded-full group"
           >
             <div className="w-8 h-8 rounded-full bg-cyan-600/20 text-cyan-400 flex items-center justify-center group-hover:bg-[#00E5A0] group-hover:text-[#060B14] transition-colors">
               <Shield className="w-4 h-4" />

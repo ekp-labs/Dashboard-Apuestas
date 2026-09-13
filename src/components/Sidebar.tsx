@@ -50,9 +50,9 @@ export const Sidebar: React.FC<SidebarProps> = ({ activeTab, onSelectTab }) => {
             <React.Fragment key={item.id}>
               <button
                 onClick={() => onSelectTab(item.id)}
-                className={`w-full flex items-center justify-between px-3 py-2.5 rounded-xl text-sm transition-all duration-200 group ${
+                className={`w-full flex items-center justify-between px-3 py-2.5 rounded-xl text-sm transition-colors group ${
                   isActive
-                    ? 'bg-gradient-to-r from-[#0C3875] via-[#0A2E60] to-[#082247] text-white font-semibold border border-[#2563EB] shadow-[0_0_15px_rgba(37,99,235,0.4)]'
+                    ? 'bg-[#0A2E60] text-white font-semibold border border-[#2563EB]'
                     : 'text-slate-300 font-medium hover:text-white hover:bg-[#0E1B32]'
                 }`}
               >
@@ -78,31 +78,18 @@ export const Sidebar: React.FC<SidebarProps> = ({ activeTab, onSelectTab }) => {
         })}
       </nav>
 
-      {/* Bottom Stadium Card matching image */}
+      {/* Bottom Card */}
       <div className="mt-4 pt-2">
-        <div className="relative rounded-2xl overflow-hidden border border-[#1E3258] h-40 group shadow-lg flex flex-col justify-end p-3.5">
-          {/* Background Stadium Image */}
-          <div
-            className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105"
-            style={{
-              backgroundImage: `url('https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=500&auto=format&fit=crop&q=80')`
-            }}
-          />
-          {/* Dark Gradient Overlay for text contrast */}
-          <div className="absolute inset-0 bg-gradient-to-t from-[#050A14] via-[#050A14]/70 to-transparent" />
-
-          {/* Live Stats Content */}
-          <div className="relative z-10 text-left space-y-1">
-            <div className="flex items-center gap-2">
-              <span className="inline-flex rounded-full h-2 w-2 bg-[#00E5A0]" />
-              <p className="text-sm font-heading font-black text-white uppercase tracking-wider">
-                Live Stats
-              </p>
-            </div>
-            <p className="text-[11px] text-slate-300 font-medium leading-tight">
-              Análisis y cuotas actualizadas en tiempo real
+        <div className="rounded-2xl border border-[#1E3258] bg-[#081324] flex flex-col justify-end p-3.5 space-y-1">
+          <div className="flex items-center gap-2">
+            <span className="inline-flex rounded-full h-2 w-2 bg-[#00E5A0]" />
+            <p className="text-sm font-heading font-black text-white uppercase tracking-wider">
+              Live Stats
             </p>
           </div>
+          <p className="text-[11px] text-slate-300 font-medium leading-tight">
+            Análisis y cuotas actualizadas en tiempo real
+          </p>
         </div>
       </div>
 
