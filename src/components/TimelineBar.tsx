@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Calendar, Flame, Sparkles, Filter, ChevronLeft, ChevronRight } from 'lucide-react';
+import React from 'react';
+import { Calendar, Radio, Sparkles, Trophy, Layers, ChevronLeft, ChevronRight, Filter } from 'lucide-react';
 
 interface TimelineBarProps {
   selectedFilter: string;
@@ -25,19 +25,19 @@ export const TimelineBar: React.FC<TimelineBarProps> = ({
   ];
 
   const filterOptions = [
-    { id: 'todos', label: 'TODOS (9)' },
-    { id: 'live', label: 'EN VIVO 🔴 (4)', isLive: true },
-    { id: 'value', label: 'VALUE BETS ✨ (5)', isValue: true },
-    { id: 'top', label: 'TOP LIGAS' }
+    { id: 'todos', label: 'Todos los Partidos', icon: Layers, count: '9', color: 'blue' },
+    { id: 'live', label: 'Partidos en Vivo', icon: Radio, count: '4', isLive: true, color: 'rose' },
+    { id: 'value', label: 'Value Bets (+EV)', icon: Sparkles, count: '5', isValue: true, color: 'emerald' },
+    { id: 'top', label: 'Top Ligas', icon: Trophy, count: '4', color: 'amber' }
   ];
 
   return (
-    <div className="border-b border-[#1E3254] bg-[#070D18] px-4 lg:px-6 py-2.5">
-      <div className="max-w-[1920px] mx-auto flex flex-wrap items-center justify-between gap-4">
+    <div className="border-b border-[#182B48] bg-[#050B15] px-4 lg:px-6 py-2">
+      <div className="max-w-[1920px] mx-auto flex flex-wrap items-center justify-between gap-3">
         
         {/* Left: FotMob-style Day Carousel Selector */}
         <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar py-0.5">
-          <button className="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-[#12223C] transition-colors shrink-0">
+          <button className="p-1.5 rounded-xl text-slate-400 hover:text-white hover:bg-[#0F1E36] transition-all shrink-0">
             <ChevronLeft className="w-4 h-4" />
           </button>
 
@@ -47,12 +47,12 @@ export const TimelineBar: React.FC<TimelineBarProps> = ({
               <button
                 key={d.id}
                 onClick={() => onSelectDate(d.id)}
-                className={`flex flex-col items-center justify-center px-3 py-1.5 rounded-xl transition-colors shrink-0 ${
+                className={`flex flex-col items-center justify-center px-3.5 py-1.5 rounded-xl transition-all shrink-0 ${
                   isSelected
-                    ? 'bg-[#00E5A0] text-[#060B14] font-black'
+                    ? 'bg-gradient-to-b from-[#00E5A0] to-[#00B880] text-[#040812] font-black shadow-[0_0_12px_rgba(0,229,160,0.35)] scale-105'
                     : d.isToday
-                    ? 'bg-[#10223B] text-[#00E5A0] border border-[#00E5A0]/50 font-bold'
-                    : 'bg-[#0A1322] border border-[#1C2E4A] text-slate-300 hover:text-white hover:bg-[#12223C]'
+                    ? 'bg-[#0E1D34] text-[#00E5A0] border border-[#00E5A0]/50 font-bold'
+                    : 'bg-[#081222] border border-[#162945] text-slate-300 hover:text-white hover:bg-[#0E1D34] hover:border-[#223E66]'
                 }`}
               >
                 <span className="text-[10px] font-heading uppercase tracking-wider leading-none">
@@ -65,31 +65,52 @@ export const TimelineBar: React.FC<TimelineBarProps> = ({
             );
           })}
 
-          <button className="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-[#12223C] transition-colors shrink-0">
+          <button className="p-1.5 rounded-xl text-slate-400 hover:text-white hover:bg-[#0F1E36] transition-all shrink-0">
             <ChevronRight className="w-4 h-4" />
           </button>
         </div>
 
-        {/* Right: Quick Action Filter Tabs */}
+        {/* Right: Cyber Threat Intel Style Circular Icon Command Rail */}
         <div className="flex items-center gap-2 overflow-x-auto no-scrollbar">
-          <div className="flex items-center gap-1 bg-[#091220] border border-[#1E3254] p-1 rounded-xl">
+          <div className="flex items-center gap-2 bg-[#081324] border border-[#172B47] p-1.5 rounded-2xl">
             {filterOptions.map((opt) => {
+              const Icon = opt.icon;
               const isActive = selectedFilter === opt.id;
+
               return (
                 <button
                   key={opt.id}
                   onClick={() => onSelectFilter(opt.id)}
-                  className={`px-3 py-1.5 rounded-lg text-xs font-heading font-bold uppercase tracking-wider transition-colors shrink-0 ${
+                  title={opt.label}
+                  className={`group relative flex items-center justify-center w-9 h-9 rounded-full transition-all ${
                     isActive
-                      ? 'bg-blue-600 text-white'
+                      ? opt.isLive
+                        ? 'bg-rose-500 text-white shadow-[0_0_15px_rgba(244,63,94,0.6)] ring-2 ring-rose-400'
+                        : opt.isValue
+                        ? 'bg-[#00E5A0] text-[#040812] shadow-[0_0_15px_rgba(0,229,160,0.6)] ring-2 ring-[#00E5A0]'
+                        : 'bg-blue-600 text-white shadow-[0_0_15px_rgba(37,99,235,0.6)] ring-2 ring-blue-400'
                       : opt.isLive
-                      ? 'text-rose-400 hover:bg-[#15233D]'
+                      ? 'bg-[#150A14] border border-rose-500/40 text-rose-400 hover:border-rose-400 hover:bg-rose-950/40'
                       : opt.isValue
-                      ? 'text-[#00E5A0] hover:bg-[#15233D]'
-                      : 'text-slate-300 hover:text-white hover:bg-[#15233D]'
+                      ? 'bg-[#081816] border border-[#00E5A0]/40 text-[#00E5A0] hover:border-[#00E5A0] hover:bg-[#00E5A0]/10'
+                      : 'bg-[#0C1729] border border-[#1A2F4E] text-slate-300 hover:text-white hover:border-cyan-500/50 hover:bg-[#12223C]'
                   }`}
                 >
-                  {opt.label}
+                  <Icon className={`w-4 h-4 ${opt.isLive && !isActive ? 'animate-pulse' : ''}`} />
+
+                  {/* Count badge */}
+                  <span className={`absolute -top-1 -right-1 text-[9px] font-mono font-black px-1.5 py-0.2 rounded-full border ${
+                    isActive
+                      ? 'bg-[#040812] text-white border-white/40'
+                      : 'bg-[#0E1D34] text-slate-200 border-[#20395E]'
+                  }`}>
+                    {opt.count}
+                  </span>
+
+                  {/* Tooltip on Hover */}
+                  <span className="absolute bottom-full mb-2 hidden group-hover:block whitespace-nowrap bg-[#0B172A] border border-[#1C3357] text-white text-[10px] font-mono px-2 py-1 rounded-md shadow-xl z-50 pointer-events-none">
+                    {opt.label}
+                  </span>
                 </button>
               );
             })}
@@ -97,10 +118,10 @@ export const TimelineBar: React.FC<TimelineBarProps> = ({
 
           <button
             onClick={() => onSelectDate('2026-09-12')}
-            className="flex items-center gap-1.5 bg-[#00E5A0]/10 border border-[#00E5A0]/40 text-[#00E5A0] px-3 py-1.5 rounded-xl text-xs font-heading font-bold uppercase tracking-wider hover:bg-[#00E5A0]/20 transition-colors shrink-0"
+            title="Ir a Hoy"
+            className="flex items-center justify-center w-9 h-9 bg-[#00E5A0]/10 border border-[#00E5A0]/40 text-[#00E5A0] rounded-full hover:bg-[#00E5A0]/20 transition-all shadow-[0_0_10px_rgba(0,229,160,0.15)] shrink-0"
           >
-            <Calendar className="w-3.5 h-3.5" />
-            Hoy
+            <Calendar className="w-4 h-4" />
           </button>
         </div>
 
@@ -108,4 +129,5 @@ export const TimelineBar: React.FC<TimelineBarProps> = ({
     </div>
   );
 };
+
 
